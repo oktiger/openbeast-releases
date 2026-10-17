@@ -20,6 +20,9 @@
     h1 { margin: 24px 0 8px; font-size: 40px; font-weight: 600; letter-spacing: -0.02em; }
     p { margin: 0; max-width: 32rem; color: var(--muted); }
     .soon { margin-top: 32px; padding: 10px 18px; border: 1px solid var(--line); border-radius: 999px; background: var(--chip); font-size: 14px; }
+    .download { margin-top: 32px; display: inline-block; padding: 12px 24px; border-radius: 999px; background: var(--fg); color: var(--bg); font-size: 15px; font-weight: 600; text-decoration: none; }
+    .meta { margin-top: 10px; font-size: 13px; color: var(--muted); }
+    [hidden] { display: none !important; }
     .web { margin-top: 20px; font-size: 14px; color: var(--muted); }
     a { color: inherit; }
     footer { padding: 24px 16px; text-align: center; font-size: 13px; color: var(--muted); border-top: 1px solid var(--line); }
@@ -30,9 +33,31 @@
     <img src="/logo.png" alt="OpenBeast">
     <h1>OpenBeast</h1>
     <p>把 AI 对话、文档、待办和你自己的小应用放进同一个 Mac 应用。</p>
-    <div class="soon">macOS 版即将开放下载</div>
+    <a class="download" id="download" href="/download">下载 macOS 版</a>
+    <div class="meta" id="meta">Apple Silicon · 装好后会自动更新</div>
+    <div class="soon" id="soon" hidden>macOS 版即将开放下载</div>
     <div class="web">已有网页版账号？<a href="https://app.openbeast.app">登录网页版 →</a></div>
   </main>
   <footer>© OpenBeast</footer>
+  <script>
+    // 发布仓库还没有任何一版时 /download 无处可去：GitHub 明确答「没有」才换成「即将开放」。
+    // 查不到（限流、网络）就照常显示下载按钮。
+    fetch("https://api.github.com/repos/oktiger/openbeast-releases/releases/latest")
+      .then(function (response) {
+        if (response.status === 404) {
+          document.getElementById("download").hidden = true;
+          document.getElementById("meta").hidden = true;
+          document.getElementById("soon").hidden = false;
+          return null;
+        }
+        return response.ok ? response.json() : null;
+      })
+      .then(function (release) {
+        if (release && release.tag_name) {
+          document.getElementById("meta").textContent = "最新版本 " + release.tag_name.replace(/^v/, "") + " · Apple Silicon · 装好后会自动更新";
+        }
+      })
+      .catch(function () {});
+  </script>
 </body>
 </html>
