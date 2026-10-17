@@ -1,0 +1,17 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/download",
+      "destination": "https://github.com/oktiger/openbeast-releases/releases/latest/download/OpenBeast-arm64.dmg",
+      "permanent": false
+    },
+    {
+      "source": "/update/:file",
+      "destination": "https://github.com/oktiger/openbeast-releases/releases/latest/download/:file",
+      "permanent": false
+    }
+  ]
+}
