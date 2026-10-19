@@ -9,6 +9,11 @@
       "permanent": false
     },
     {
+      "source": "/download/intel",
+      "destination": "https://github.com/oktiger/openbeast-releases/releases/latest/download/OpenBeast-x64.dmg",
+      "permanent": false
+    },
+    {
       "source": "/update/:file",
       "destination": "https://github.com/oktiger/openbeast-releases/releases/latest/download/:file",
       "permanent": false
