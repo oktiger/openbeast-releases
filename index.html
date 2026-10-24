@@ -1,88 +1,240 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>OpenBeast</title>
-  <meta name="description" content="OpenBeast：把 AI 对话、文档、待办和你自己的小应用放进同一个 Mac 应用。">
-  <link rel="icon" type="image/png" href="/logo.png">
-  <link rel="apple-touch-icon" href="/logo.png">
-  <style>
-    :root { --bg: #fafaf9; --fg: #1c1917; --muted: #57534e; --line: #e7e5e4; --chip: #f5f5f4; }
-    @media (prefers-color-scheme: dark) {
-      :root { --bg: #0c0a09; --fg: #fafaf9; --muted: #a8a29e; --line: #292524; --chip: #1c1917; }
-    }
-    * { box-sizing: border-box; }
-    body { margin: 0; min-height: 100vh; display: flex; flex-direction: column; background: var(--bg); color: var(--fg);
-      font: 16px/1.6 -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", sans-serif; }
-    main { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 48px 16px; }
-    img { width: 112px; height: 112px; border-radius: 24px; }
-    h1 { margin: 24px 0 8px; font-size: 40px; font-weight: 600; letter-spacing: -0.02em; }
-    p { margin: 0; max-width: 32rem; color: var(--muted); }
-    .soon { margin-top: 32px; padding: 10px 18px; border: 1px solid var(--line); border-radius: 999px; background: var(--chip); font-size: 14px; }
-    .downloads { margin-top: 32px; display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; width: 100%; }
-    .download { display: flex; flex-direction: column; align-items: center; gap: 2px; width: 280px; max-width: 100%; padding: 12px 20px; border: 1px solid var(--fg); border-radius: 16px; background: var(--fg); color: var(--bg); text-decoration: none; }
-    .download.secondary { background: transparent; color: var(--fg); }
-    .download .label { font-size: 15px; font-weight: 600; }
-    .download .sub { font-size: 12px; opacity: 0.75; }
-    .download.unavailable { border-color: var(--line); background: var(--chip); color: var(--muted); cursor: default; }
-    .meta { margin-top: 12px; font-size: 13px; color: var(--muted); }
-    .hint { margin-top: 6px; max-width: 32rem; font-size: 13px; color: var(--muted); }
-    [hidden] { display: none !important; }
-    .web { margin-top: 20px; font-size: 14px; color: var(--muted); }
-    a { color: inherit; }
-    footer { padding: 24px 16px; text-align: center; font-size: 13px; color: var(--muted); border-top: 1px solid var(--line); }
-  </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>OpenBeast: an AI notebook for your Mac</title>
+  <meta name="description" content="OpenBeast is a notebook for macOS: your docs and small apps live together, and the AI command-line tools you already use write and edit them for you." />
+  <meta name="theme-color" content="#faf8f4" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0d0c0a" media="(prefers-color-scheme: dark)" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="OpenBeast: an AI notebook for your Mac" />
+  <meta property="og:description" content="Your docs and small apps live together, and the AI command-line tools you already use write and edit them for you." />
+  <meta property="og:image" content="https://openbeast.app/icon.png" />
+  <link rel="icon" href="/icon.png" />
+  <link rel="apple-touch-icon" href="/icon.png" />
+  <link rel="stylesheet" href="/home.css" />
+  <script>document.documentElement.classList.add("js");</script>
+  <script src="/home.js" defer></script>
 </head>
 <body>
-  <main>
-    <img src="/logo.png" alt="OpenBeast">
-    <h1>OpenBeast</h1>
-    <p>把 AI 对话、文档、待办和你自己的小应用放进同一个 Mac 应用。</p>
-    <div class="downloads" id="downloads">
-      <a class="download" id="download-arm64" href="/download">
-        <span class="label">下载 Mac 版 · Apple 芯片</span>
-        <span class="sub">M1、M2、M3、M4 等 Apple 芯片的 Mac</span>
-      </a>
-      <a class="download secondary" id="download-x64" href="/download/intel">
-        <span class="label">下载 Mac 版 · Intel 芯片</span>
-        <span class="sub" id="download-x64-sub">Intel 处理器的 Mac</span>
-      </a>
+  <header class="nav" id="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="/" aria-label="OpenBeast home"><img src="/icon.png" alt="" />OpenBeast</a>
+      <nav class="nav-links" aria-label="Page">
+        <a href="#features">What it does</a>
+        <a href="#remote">On your phone</a>
+        <a class="lang" href="/zh" hreflang="zh-CN" lang="zh-CN" aria-label="中文版"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><circle cx="8" cy="8" r="6.25"/><path d="M1.75 8h12.5M8 1.75c1.7 1.8 2.5 3.9 2.5 6.25S9.7 12.45 8 14.25C6.3 12.45 5.5 10.35 5.5 8S6.3 3.55 8 1.75Z"/></svg>中文</a>
+        <a class="pill" href="#download">Download</a>
+      </nav>
     </div>
-    <div class="meta" id="meta">装好后会自动更新 · macOS 13 及以上</div>
-    <div class="hint" id="hint">不知道选哪个？点屏幕左上角的苹果标志 →「关于本机」：写着「芯片 Apple M…」选 Apple 芯片，写着「处理器 Intel…」选 Intel 芯片。</div>
-    <div class="soon" id="soon" hidden>macOS 版即将开放下载</div>
-    <div class="web">已有网页版账号？<a href="https://app.openbeast.app">登录网页版 →</a></div>
+  </header>
+
+  <main>
+    <section class="hero" id="download">
+      <div class="container">
+        <span class="eyebrow rise" style="--i:0"><span class="dot"></span>In beta · Free</span>
+        <h1>
+          <span class="line rise" style="--i:1">Your notebook,</span>
+          <span class="line rise" style="--i:2">with <mark>your own AI</mark></span>
+        </h1>
+        <div class="hero-foot">
+          <p class="lede rise" style="--i:3">OpenBeast is a notebook for macOS: <strong>your docs and small apps live together</strong>, and the AI command-line tools you already use (Claude Code, Codex and others) write and edit them for you.</p>
+          <div class="cta rise" style="--i:4">
+            <div class="buttons">
+              <a class="btn btn-primary" href="https://openbeast.app/download">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.37 12.6c-.02-2.3 1.88-3.4 1.96-3.46-1.07-1.56-2.73-1.77-3.32-1.8-1.41-.14-2.76.83-3.47.83-.72 0-1.82-.81-3-.79-1.54.02-2.96.9-3.75 2.27-1.6 2.78-.41 6.88 1.15 9.13.76 1.1 1.67 2.34 2.86 2.3 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.78.74 2.99.72 1.24-.02 2.02-1.12 2.77-2.23.88-1.28 1.24-2.52 1.26-2.59-.03-.01-2.4-.92-2.42-3.65ZM14.1 5.86c.63-.77 1.06-1.83.94-2.89-.91.04-2.02.61-2.67 1.37-.58.67-1.1 1.76-.96 2.8 1.02.08 2.06-.52 2.69-1.28Z"/></svg>
+                Download for Mac <span class="sub">Apple silicon</span>
+                <svg class="arrow" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5v10M3.5 8.5 8 13l4.5-4.5"/></svg>
+              </a>
+              <a class="btn btn-ghost" href="https://openbeast.app/download/intel">Intel</a>
+            </div>
+            <p class="fine">Free · Beta<span data-version hidden> · Latest <b></b></span> · Requires <b>macOS 13</b> or later.<br />Copies downloaded here update themselves in the background.</p>
+            <details class="which">
+              <summary>Not sure which chip your Mac has?</summary>
+              <p>Click the Apple menu at the top left → “About This Mac”. If it says “Chip Apple M…”, pick Apple silicon; if it says “Processor Intel…”, pick Intel.</p>
+            </details>
+          </div>
+        </div>
+
+        <div class="stage rise" style="--i:5">
+          <div class="window demo is-final" id="demo" role="img" aria-label="An OpenBeast window: in the chat on the right, someone asks for a budget app; once the AI tool has built it, “Budget” appears under Pages in the sidebar.">
+            <div class="titlebar"><span class="lights"><i></i><i></i><i></i></span><span class="wt">OpenBeast</span></div>
+            <div class="panes" aria-hidden="true">
+              <aside class="side">
+                <div class="side-label">Docs</div>
+                <div class="item is-active"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M4 1.75h5.5L12.5 4.8v9.45H4z"/><path d="M9.5 1.75V5h3"/></svg>Weekly plan</div>
+                <div class="item"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M4 1.75h5.5L12.5 4.8v9.45H4z"/><path d="M9.5 1.75V5h3"/></svg>Reading notes</div>
+                <div class="item"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M4 1.75h5.5L12.5 4.8v9.45H4z"/><path d="M9.5 1.75V5h3"/></svg>Packing list</div>
+                <div class="side-label">Pages</div>
+                <div class="item"><span class="tile t1">✓</span>Todo</div>
+                <div class="item"><span class="tile t2">◎</span>Habits</div>
+                <div class="item new" data-beat="new"><span class="tile t3">$</span>Budget<span class="badge">New</span></div>
+              </aside>
+
+              <div class="doc">
+                <div class="crumb">Docs / Weekly plan</div>
+                <h4>Weekly plan</h4>
+                <div class="meta">Week 4 of October · Markdown</div>
+                <div class="h5">This week</div>
+                <div class="check done"><span class="box"></span>Call home</div>
+                <div class="check done"><span class="box"></span>Sort last week’s photos</div>
+                <div class="check"><span class="box"></span>Send the proposal draft by Wednesday</div>
+                <div class="check"><span class="box"></span>Finish chapter 3 and note the key points</div>
+                <div class="h5">Scratchpad</div>
+                <div class="bar" style="width:92%"></div>
+                <div class="bar" style="width:78%"></div>
+                <div class="bar" style="width:85%"></div>
+                <div class="bar" style="width:40%"></div>
+              </div>
+
+              <div class="chat">
+                <div class="chat-head">Chat<span class="chip">Claude Code</span></div>
+                <div class="msgs">
+                  <div class="msg me beat" data-beat="ask">Make me a budget app with monthly totals</div>
+                  <div class="msg ai beat" data-beat="reply">
+                    Sure, handing it to Claude Code.
+                    <ul class="steps">
+                      <li class="step beat" data-beat="s1"><span class="st"></span>Create the app’s folder</li>
+                      <li class="step beat" data-beat="s2"><span class="st"></span>Write pages: add entries, monthly totals</li>
+                      <li class="step beat" data-beat="s3"><span class="st"></span>Build passes</li>
+                    </ul>
+                  </div>
+                  <div class="msg ai beat" data-beat="done">“Budget” is ready, in the sidebar.</div>
+                </div>
+                <div class="composer"><span class="field" data-placeholder="Ask the AI to make something…"></span><span class="send"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 13V3M3.5 7.5 8 3l4.5 4.5"/></svg></span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="container">
+        <span class="kicker reveal">What it does</span>
+        <h2 class="reveal" style="--i:1">Docs, apps and AI,<br /><em>all in one place.</em></h2>
+
+        <div class="bento">
+          <article class="card reveal">
+            <span class="num">01</span>
+            <h3>Docs and apps, together</h3>
+            <p>Docs are plain Markdown; apps are pages with buttons, lists and forms. It all lives in one folder on your Mac.</p>
+            <div class="viz" aria-hidden="true">
+              <div class="tree">
+                <div><svg viewBox="0 0 16 16" fill="currentColor"><path d="M1.5 3.5A1 1 0 0 1 2.5 2.5h3.6l1.4 1.5h6a1 1 0 0 1 1 1v7.5a1 1 0 0 1-1 1h-11a1 1 0 0 1-1-1z"/></svg>OpenBeastWorkspace</div>
+                <div style="--d:1"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M1.5 3.5A1 1 0 0 1 2.5 2.5h3.6l1.4 1.5h6a1 1 0 0 1 1 1v7.5a1 1 0 0 1-1 1h-11a1 1 0 0 1-1-1z"/></svg>notes<span class="tag">Docs</span></div>
+                <div style="--d:2" class="hl"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 1.75h5.5L12.5 4.8v9.45H4z"/></svg>Weekly plan.md</div>
+                <div style="--d:1"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M1.5 3.5A1 1 0 0 1 2.5 2.5h3.6l1.4 1.5h6a1 1 0 0 1 1 1v7.5a1 1 0 0 1-1 1h-11a1 1 0 0 1-1-1z"/></svg>apps<span class="tag">Apps</span></div>
+                <div style="--d:2" class="hl"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M1.5 3.5A1 1 0 0 1 2.5 2.5h3.6l1.4 1.5h6a1 1 0 0 1 1 1v7.5a1 1 0 0 1-1 1h-11a1 1 0 0 1-1-1z"/></svg>budget</div>
+                <div style="--d:1"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M1.5 3.5A1 1 0 0 1 2.5 2.5h3.6l1.4 1.5h6a1 1 0 0 1 1 1v7.5a1 1 0 0 1-1 1h-11a1 1 0 0 1-1-1z"/></svg>tasks<span class="tag">Todo</span></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="card reveal" style="--i:1">
+            <span class="num">02</span>
+            <h3>Say it, get an app</h3>
+            <p>Type “Make me a…” in the chat. OpenBeast hands the job to your AI tool, and the app shows up in your sidebar when it’s done.</p>
+            <div class="viz" aria-hidden="true">
+              <div class="make">
+                <div class="ask">Make me a habit tracker, one tap a day</div>
+                <svg class="arrow-down" width="20" height="28" viewBox="0 0 20 28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v22M4 18l6 6 6-6"/></svg>
+                <div class="app-card"><span class="tile t2">◎</span><div><b>Habits</b><span>Now in your sidebar, under Pages</span></div><span class="badge">New</span></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="card wide reveal">
+            <div>
+              <span class="num">03</span>
+              <h3>Your own AI</h3>
+              <p>OpenBeast doesn’t sell AI and doesn’t sit between you and it: the AI tools you install sign in with your own accounts and talk straight to their providers.</p>
+            </div>
+            <div aria-hidden="true">
+              <div class="route">
+                <div class="mac">
+                  <div class="mac-title">Your Mac</div>
+                  <div class="node"><img src="/icon.png" alt="" /><span><b>OpenBeast</b><small>Hands off the work</small></span></div>
+                  <div class="node"><span class="term">&gt;_</span><span><b>AI command-line tool</b><small>Claude Code, Codex…</small></span></div>
+                </div>
+                <div class="wire"><span>Your own sign-in</span></div>
+                <div class="vendor"><b>AI provider</b><span>Direct connection</span></div>
+              </div>
+              <div class="note"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 1.5 2.5 3.8v3.9c0 3.2 2.3 5.9 5.5 6.8 3.2-.9 5.5-3.6 5.5-6.8V3.8z"/><path d="m5.6 8 1.7 1.7 3.2-3.4"/></svg>No OpenBeast server sits between the AI tool and its provider.</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="band section" id="remote">
+      <div class="container remote-grid">
+        <div>
+          <span class="kicker reveal">Remote</span>
+          <h2 class="reveal" style="--i:1">Away from your desk?<br /><em>Keep going on your phone.</em></h2>
+          <p class="section-intro reveal" style="--i:2">From your phone, keep chatting with the AI on your Mac at home, check your to-dos and docs, and open the apps you made. The AI still runs on your own Mac.</p>
+          <ol class="howto reveal" style="--i:3">
+            <li><span><b>Open the web version</b> and sign in with your phone number, email or WeChat</span></li>
+            <li><span>In OpenBeast on your Mac, open <b class="nowrap">Settings → Phone</b></span></li>
+            <li><span><b>Scan</b> the QR code there with your phone, and you’re connected</span></li>
+          </ol>
+          <div class="buttons reveal" style="--i:4">
+            <a class="btn btn-primary" href="https://remote.openbeast.cn">Open the web version
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 11 11 5M6 4.5h5.5V10"/></svg>
+            </a>
+          </div>
+          <p class="fine reveal" style="--i:5">The OpenBeast iOS app is coming to the App Store soon. Remote is currently served from mainland China.</p>
+        </div>
+
+        <div class="phone-wrap reveal" style="--i:2">
+          <div class="phone" role="img" aria-label="The phone web version: asking the AI on the Mac at home to turn meeting notes into to-dos.">
+            <div class="screen" aria-hidden="true">
+              <span class="island"></span>
+              <div class="status"><span>9:41</span><span>●●●</span></div>
+              <div class="p-head"><img src="/icon.png" alt="" /><div><b>Chat</b><span>Mac at home is online</span></div></div>
+              <div class="p-msgs">
+                <div class="time">Today 6:12 PM</div>
+                <div class="msg me">What’s left in my weekly plan?</div>
+                <div class="msg ai">Two things: the proposal draft by Wednesday, and chapter 3.</div>
+                <div class="msg me">Turn today’s meeting notes into to-dos</div>
+                <div class="msg ai">Done, I added 3 to-dos:
+                  <div class="todo">
+                    <div><i></i>Confirm the budget by Friday</div>
+                    <div><i></i>Book a design review</div>
+                    <div><i></i>Send out the meeting notes</div>
+                  </div>
+                </div>
+              </div>
+              <div class="p-input">Say something…</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section closing">
+      <div class="container">
+        <img class="mark-icon reveal" src="/icon.png" alt="" />
+        <h2 class="reveal" style="--i:1">Let the AI you already use<br /><em>write and edit for you.</em></h2>
+        <div class="buttons reveal" style="--i:2">
+          <a class="btn btn-primary" href="https://openbeast.app/download">Download for Mac <span class="sub">Apple silicon</span></a>
+          <a class="btn btn-ghost" href="https://openbeast.app/download/intel">Intel</a>
+        </div>
+        <p class="fine reveal" style="--i:3">Free · Beta · Requires macOS 13 or later</p>
+      </div>
+    </section>
   </main>
-  <footer>© OpenBeast</footer>
-  <script>
-    // 发布仓库还没有任何一版时 /download 无处可去：GitHub 明确答「没有」才换成「即将开放」。
-    // 最新一版里还没有 Intel 安装包（OpenBeast-x64.dmg）时，Intel 按钮换成「下一版提供」，不点进 404。
-    // 查不到（限流、网络）就照常显示两个下载按钮。
-    fetch("https://api.github.com/repos/oktiger/openbeast-releases/releases/latest")
-      .then(function (response) {
-        if (response.status === 404) {
-          document.getElementById("downloads").hidden = true;
-          document.getElementById("meta").hidden = true;
-          document.getElementById("hint").hidden = true;
-          document.getElementById("soon").hidden = false;
-          return null;
-        }
-        return response.ok ? response.json() : null;
-      })
-      .then(function (release) {
-        if (!release || !release.tag_name) return;
-        document.getElementById("meta").textContent = "最新版本 " + release.tag_name.replace(/^v/, "") + " · 装好后会自动更新 · macOS 13 及以上";
-        var hasIntel = (release.assets || []).some(function (asset) { return asset.name === "OpenBeast-x64.dmg"; });
-        if (!hasIntel) {
-          var intel = document.getElementById("download-x64");
-          intel.removeAttribute("href");
-          intel.setAttribute("aria-disabled", "true");
-          intel.classList.add("unavailable");
-          document.getElementById("download-x64-sub").textContent = "Intel 版下一版提供";
-        }
-      })
-      .catch(function () {});
-  </script>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <a class="brand" href="/"><img src="/icon.png" alt="" />OpenBeast</a>
+      <div class="footer-links">
+        <a href="/privacy" hreflang="zh-CN">Privacy Policy (in Chinese)</a>
+        <a href="/terms" hreflang="zh-CN">Terms of Use (in Chinese)</a>
+        <span>© 2026 北京最焦科技有限公司</span>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>

@@ -1,0 +1,15 @@
+{
+  "source": "oktiger/openbeast",
+  "commit": "5e19c1d9141e",
+  "files": [
+    "404.html",
+    "home.css",
+    "home.js",
+    "icon.png",
+    "index.html",
+    "privacy.html",
+    "style.css",
+    "terms.html",
+    "zh.html"
+  ]
+}

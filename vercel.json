@@ -17,6 +17,11 @@
       "source": "/update/:file",
       "destination": "https://github.com/oktiger/openbeast-releases/releases/latest/download/:file",
       "permanent": false
+    },
+    {
+      "source": "/en",
+      "destination": "/",
+      "permanent": false
     }
   ]
 }
