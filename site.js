@@ -28,6 +28,51 @@
     reveals.forEach((el) => io.observe(el));
   }
 
+  // 语言菜单：点外面或按 Esc 收起（开合本身由 <details> 负责，没有脚本也能用）。
+  const lang = document.querySelector(".lang");
+  if (lang) {
+    document.addEventListener("click", (event) => { if (lang.open && !lang.contains(event.target)) lang.open = false; });
+    document.addEventListener("keydown", (event) => {
+      if (event.key !== "Escape" || !lang.open) return;
+      lang.open = false;
+      lang.querySelector("summary").focus();
+    });
+  }
+
+  // 法律文件的目录：按正文里的小标题生成，读到哪一节就点亮哪一节。
+  const toc = document.querySelector("[data-toc]");
+  const headings = [...document.querySelectorAll(".legal h2")];
+  if (toc && headings.length) {
+    const list = document.createElement("ol");
+    const links = headings.map((heading, index) => {
+      heading.id ||= `section-${index + 1}`;
+      const item = document.createElement("li");
+      const link = document.createElement("a");
+      link.href = `#${heading.id}`;
+      link.textContent = heading.textContent;
+      item.append(link);
+      list.append(item);
+      return link;
+    });
+    toc.append(list);
+    toc.hidden = false;
+    if ("IntersectionObserver" in window) {
+      const current = new Set();
+      const mark = (at) => links.forEach((link, index) => link.classList.toggle("is-current", index === at));
+      const light = () => mark(headings.findIndex((heading) => current.has(heading)));
+      // 最后一节太短、标题升不到那条带里：滚到底就点亮最后一节。
+      window.addEventListener("scroll", () => {
+        if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) mark(headings.length - 1);
+      }, { passive: true });
+      // 只看小标题经过屏幕上部那一条带：两节之间没有标题经过时，保持上一节亮着。
+      const io = new IntersectionObserver((entries) => {
+        for (const entry of entries) entry.isIntersecting ? current.add(entry.target) : current.delete(entry.target);
+        if (current.size) light();
+      }, { rootMargin: "-80px 0px -55% 0px" });
+      headings.forEach((heading) => io.observe(heading));
+    }
+  }
+
   // 最新版本号：问 GitHub 发布仓库的最新一版，查到才显示（国内访问 GitHub 常常很慢，超时就算了）。
   const version = document.querySelector("[data-version]");
   if (version && "AbortController" in window) {

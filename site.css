@@ -1,4 +1,4 @@
-/* 官网首页专用样式；《隐私政策》《用户协议》、404 页仍用 style.css。
+/* 官网全站样式：首页（index.html、en.html）、《隐私政策》《用户协议》（privacy.html、terms.html 与 en/ 下的英文版）、404 页。
    不引外部字体与脚本（大陆访问 Google Fonts / 多数 CDN 不稳），字体全用系统自带。 */
 
 :root {
@@ -117,7 +117,7 @@ body::before {
 .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font: 600 17px/1 var(--display); letter-spacing: -0.01em; }
 .brand img { width: 28px; height: 28px; border-radius: 7px; box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06), 0 2px 6px -2px rgba(255, 150, 0, 0.5); }
 .nav-links { display: flex; align-items: center; gap: 4px; }
-.nav-links a:not(.pill) {
+.nav-links > a:not(.pill) {
   text-decoration: none;
   font-size: 14px;
   color: var(--ink-2);
@@ -125,9 +125,52 @@ body::before {
   border-radius: 999px;
   transition: color 0.2s ease, background-color 0.2s ease;
 }
-.nav-links a:not(.pill):hover { color: var(--ink); background: var(--line); }
-.nav-links .lang { display: inline-flex; align-items: center; gap: 6px; font-weight: 500; letter-spacing: 0.01em; }
-.nav-links .lang svg { opacity: 0.8; }
+.nav-links > a:not(.pill):hover { color: var(--ink); background: var(--line); }
+
+/* 语言：地球图标，点开选 English / 简体中文；没有脚本时靠 <details> 本身也能开合 */
+.lang { position: relative; }
+.lang summary {
+  list-style: none;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  color: var(--ink-2);
+  cursor: pointer;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+.lang summary::-webkit-details-marker { display: none; }
+.lang summary:hover, .lang[open] summary { color: var(--ink); background: var(--line); }
+.lang-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 168px;
+  padding: 6px;
+  border-radius: 14px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: 0 1px 2px rgba(21, 19, 15, 0.06), 0 16px 40px -12px rgba(60, 38, 0, 0.28);
+  transform-origin: top right;
+  animation: menu-in 0.18s var(--ease-out);
+}
+@keyframes menu-in { from { opacity: 0; transform: translateY(-4px) scale(0.97); } }
+.lang-menu a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 9px 12px;
+  border-radius: 9px;
+  font-size: 14px;
+  color: var(--ink-2);
+  text-decoration: none;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+.lang-menu a:hover { background: var(--line); color: var(--ink); }
+.lang-menu a[aria-current] { color: var(--ink); font-weight: 600; }
+.lang-menu a svg { color: var(--amber-text); flex: none; }
 .pill {
   margin-left: 8px;
   display: inline-flex;
@@ -531,6 +574,62 @@ body::before {
 .footer a { text-decoration: none; transition: color 0.2s ease; }
 .footer-links a:hover { color: var(--ink); }
 
+/* ---------- 法律文件：《隐私政策》《用户协议》 ---------- */
+.legal-hero { position: relative; isolation: isolate; overflow-x: clip; padding: clamp(56px, 9vw, 112px) 0 clamp(40px, 5vw, 64px); border-bottom: 1px solid var(--line); }
+.legal-hero::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: -200px;
+  right: -10%;
+  width: min(820px, 90vw);
+  height: 560px;
+  background: radial-gradient(closest-side, var(--amber-soft), transparent);
+  filter: blur(20px);
+  pointer-events: none;
+}
+.legal-hero h1 { margin: 20px 0 0; font: 700 clamp(44px, 6.6vw, 84px)/1.04 var(--display); letter-spacing: -0.045em; }
+.legal-meta { margin: 24px 0 0; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 20px; font-size: 14px; color: var(--ink-3); }
+.legal-meta a { color: var(--ink-2); text-decoration: underline; text-decoration-color: var(--line-2); text-underline-offset: 3px; transition: text-decoration-color 0.2s ease; }
+.legal-meta a:hover { text-decoration-color: currentColor; }
+.legal-layout { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: clamp(40px, 6vw, 96px); padding-block: clamp(40px, 6vw, 72px) clamp(96px, 12vw, 144px); }
+.toc { position: sticky; top: 96px; align-self: start; font-size: 13px; }
+.toc-title { margin-bottom: 14px; font: 500 12px/1 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); }
+.toc ol { list-style: none; margin: 0; padding: 0; border-left: 1px solid var(--line); }
+.toc a { display: block; margin-left: -1px; padding: 6px 0 6px 16px; border-left: 2px solid transparent; color: var(--ink-3); text-decoration: none; line-height: 1.45; transition: color 0.2s ease, border-color 0.2s ease; }
+.toc a:hover { color: var(--ink); }
+.toc a.is-current { color: var(--ink); border-left-color: var(--amber-2); }
+/* 目录要靠脚本生成，没有脚本时藏着，正文也照样待在第二栏 */
+.legal { grid-column: 2; max-width: 42em; font-size: 17px; line-height: 1.85; color: var(--ink-2); }
+.legal p { margin: 0 0 16px; }
+.legal .lead { font-size: clamp(18px, 1.6vw, 20px); line-height: 1.75; color: var(--ink); }
+.legal h2 { margin: 64px 0 16px; font: 700 clamp(22px, 2.2vw, 26px)/1.35 var(--display); letter-spacing: -0.02em; color: var(--ink); scroll-margin-top: 88px; }
+.legal ul { list-style: none; margin: 0 0 16px; padding: 0; }
+.legal li { position: relative; margin: 10px 0; padding-left: 24px; }
+.legal li::before { content: ""; position: absolute; left: 2px; top: 0.9em; width: 10px; height: 2px; border-radius: 1px; background: var(--amber-2); }
+.legal strong { color: var(--ink); font-weight: 600; }
+.legal a:not(.btn) { color: var(--ink); text-decoration: underline; text-decoration-color: var(--amber); text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+.legal-note { margin: 0 0 32px; padding: 14px 18px; border-radius: 14px; background: var(--amber-soft); font-size: 14px; line-height: 1.7; }
+.contact { margin-top: 64px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 24px; padding: 24px 28px; border-radius: 20px; border: 1px solid var(--line); background: var(--surface); }
+.contact b { display: block; color: var(--ink); font: 600 17px/1.4 var(--display); }
+.contact span { font-size: 14px; color: var(--ink-3); }
+.contact .btn { height: 44px; padding: 0 18px; font-size: 15px; }
+
+/* ---------- 404 ---------- */
+.notfound { display: grid; place-items: center; min-height: calc(100vh - 64px - 104px); padding: 96px 0; text-align: center; }
+.notfound .code {
+  display: block;
+  font: 700 clamp(112px, 20vw, 220px)/0.9 var(--display);
+  letter-spacing: -0.06em;
+  background: linear-gradient(180deg, var(--ink) 30%, color-mix(in srgb, var(--ink) 15%, transparent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.notfound h1 { margin: 28px 0 6px; font: 700 clamp(24px, 3vw, 32px)/1.3 var(--display); letter-spacing: -0.02em; }
+.notfound p { margin: 0; color: var(--ink-3); }
+.notfound .buttons { justify-content: center; margin-top: 36px; }
+
 /* ---------- 响应式 ---------- */
 @media (max-width: 1080px) {
   .panes { grid-template-columns: 180px minmax(0, 1fr) 280px; }
@@ -548,9 +647,12 @@ body::before {
   .card.wide { grid-template-columns: 1fr; }
   .remote-grid { grid-template-columns: 1fr; }
   .phone-wrap { order: 2; }
+  .legal-layout { grid-template-columns: 1fr; }
+  .legal { grid-column: 1; }
+  .toc { display: none; }
 }
 @media (max-width: 640px) {
-  .nav-links a:not(.pill):not(.lang) { display: none; }
+  .nav-links > a:not(.pill) { display: none; }
   .hero h1 { letter-spacing: -0.04em; }
   .buttons { width: 100%; }
   .hero .btn, .closing .btn { flex: 1 1 auto; justify-content: center; }
