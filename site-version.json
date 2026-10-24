@@ -1,8 +1,10 @@
 {
   "source": "oktiger/openbeast",
-  "commit": "e0cfb4e40a81",
+  "commit": "cb5686bd0870",
   "files": [
     "404.html",
+    "apple-touch-icon.png",
+    "favicon.ico",
     "icon.png",
     "index.html",
     "privacy.html",

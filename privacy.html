@@ -4,11 +4,12 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Privacy Policy · OpenBeast</title>
-  <meta name="description" content="What personal information the OpenBeast remote service (web version and iOS app) processes, why, where it is stored, and how you can manage it." />
+  <meta name="description" content="What the OpenBeast website and app send over the network, and to whom." />
   <meta name="theme-color" content="#faf8f4" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#0d0c0a" media="(prefers-color-scheme: dark)" />
-  <link rel="icon" href="/icon.png" />
-  <link rel="apple-touch-icon" href="/icon.png" />
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  <link rel="icon" href="/icon.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="stylesheet" href="/site.css" />
   <script>document.documentElement.classList.add("js");</script>
   <script src="/site.js" defer></script>
@@ -20,7 +21,7 @@
       <nav class="nav-links" aria-label="Page">
         <a href="/">Home</a>
         <details class="lang">
-          <summary aria-label="语言 / Language" title="语言 / Language"><svg width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><circle cx="8" cy="8" r="6.25"/><path d="M1.75 8h12.5M8 1.75c1.7 1.8 2.5 3.9 2.5 6.25S9.7 12.45 8 14.25C6.3 12.45 5.5 10.35 5.5 8S6.3 3.55 8 1.75Z"/></svg></summary>
+          <summary aria-label="Language / 语言" title="Language / 语言"><svg width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><circle cx="8" cy="8" r="6.25"/><path d="M1.75 8h12.5M8 1.75c1.7 1.8 2.5 3.9 2.5 6.25S9.7 12.45 8 14.25C6.3 12.45 5.5 10.35 5.5 8S6.3 3.55 8 1.75Z"/></svg></summary>
           <div class="lang-menu">
             <a href="/privacy" hreflang="en" lang="en" aria-current="page">English<svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3.5 8.5 3 3 6-7"/></svg></a>
             <a href="/zh/privacy" hreflang="zh-CN" lang="zh-CN">简体中文</a>
@@ -36,66 +37,41 @@
       <div class="container">
         <span class="kicker rise" style="--i:0">Legal</span>
         <h1 class="rise" style="--i:1">Privacy Policy</h1>
-        <p class="legal-meta rise" style="--i:2"><span>Effective October 23, 2026</span><a href="/terms">Terms of Use</a></p>
+        <p class="legal-meta rise" style="--i:2"><span>Effective October 24, 2026</span><a href="/terms">Terms of Use</a></p>
       </div>
     </section>
 
     <div class="container legal-layout">
       <nav class="toc" aria-label="On this page" data-toc hidden><div class="toc-title">Contents</div></nav>
       <article class="legal">
-        <p class="legal-note">This is an English translation of the <a href="/zh/privacy" hreflang="zh-CN">Chinese version</a>, provided for convenience. If the two differ, the Chinese version prevails.</p>
-        <p class="lead">北京最焦科技有限公司 (“we”) operates OpenBeast’s remote service (“Remote”): the web version at remote.openbeast.cn and the iOS app “OpenBeast”. This policy explains what personal information we process when you use Remote, why we process it, where it is stored, and how you can manage it.</p>
-        <p>The OpenBeast desktop app itself needs no account and does not upload your docs, apps or conversations to us. This policy applies only once you sign up for a Remote account and link your Mac under Settings → Phone.</p>
+        <p class="lead">OpenBeast is a notebook app for macOS. It has no accounts and collects no usage statistics. This policy explains what this website and the OpenBeast app send over the network, and to whom.</p>
 
-        <h2>1. What we collect</h2>
+        <h2>1. This website</h2>
         <ul>
-          <li><strong>Account information</strong>: your phone number, if you sign in with one; your email address and password, if you sign up with email (the password is stored only as an irreversible hash); if you sign in with WeChat, the user identifier and nickname provided by the WeChat Open Platform.</li>
-          <li><strong>Device information</strong>: the device name, system version, OpenBeast version and last-used time of the phones and browsers you sign in on and of the Macs you link; your push token, if you turn on notifications.</li>
-          <li><strong>Content you sync</strong>: conversations synced through Remote (messages, the AI’s working steps, attachments and images), copies of your to-dos and docs, app page files uploaded by your Mac, and the names and results of shortcuts. So that it can be passed between your phone and your Mac, this content is stored on our servers, <strong>currently in plain text, without end-to-end encryption</strong>.</li>
-          <li><strong>Security records</strong>: visitor IP addresses and request times, kept for a short time to prevent abuse (such as repeatedly requesting verification codes).</li>
+          <li>The site is static and hosted on Vercel. Like any web host, Vercel keeps standard access logs (such as your IP address, browser and the pages you open) to run and protect the service.</li>
+          <li>The site sets no cookies and uses no analytics or ads.</li>
+          <li>To show the latest version number, your browser asks GitHub (api.github.com) for it. The download buttons take you to the installer on GitHub.</li>
         </ul>
 
-        <h2>2. Why we use this information</h2>
+        <h2>2. The OpenBeast app</h2>
         <ul>
-          <li>To sign you in and verify your identity (by sending SMS or email verification codes), and to confirm it is you before your account is deleted;</li>
-          <li>To sync and pass content between your phone and your Mac, so your phone can use the AI on your Mac;</li>
-          <li>To notify you when an AI reply is finished or needs your decision;</li>
-          <li>To limit request rates, prevent abuse and troubleshoot problems.</li>
-        </ul>
-        <p>We do not use your information for advertising, we do not sell it, and we do not use your content to train any model. The AI runs on your own Mac with your own accounts; our servers do not call any AI and do not store any AI keys.</p>
-
-        <h2>3. Who we share it with</h2>
-        <ul>
-          <li><strong>Alibaba Cloud</strong>: provides our servers and sends SMS and email (within mainland China). When we send a verification code, your phone number or email address is passed to it.</li>
-          <li><strong>WeChat Open Platform (Tencent)</strong>: used only if you choose to sign in with WeChat, to confirm your WeChat identity.</li>
-          <li><strong>Apple Push Notification service</strong>: used only if you turn on notifications in the iOS app, to deliver notifications to your phone.</li>
-        </ul>
-        <p>Apart from these, we do not provide your personal information to third parties unless laws and regulations require it.</p>
-
-        <h2>4. Where it is stored and for how long</h2>
-        <ul>
-          <li>Data is stored on servers in mainland China (Alibaba Cloud China East 1, Hangzhou) and does not leave the country.</li>
-          <li>Account information is kept for as long as the account exists; attachments and images in conversations are deleted automatically after 30 days; verification codes expire after 10 minutes.</li>
-          <li>When you delete your account, we immediately delete all of that account’s data on our servers: the account, devices, conversations and attachments, copies of to-dos and docs, images and invite codes. Deleted data cannot be recovered.</li>
+          <li>No account, and <strong>no usage statistics, analytics or crash reporting</strong>. Your docs, apps and conversations stay on your Mac.</li>
+          <li>The app goes online only to check for and download updates (through openbeast.app, with the files coming from GitHub), to load the app list and the apps you install when you open the App Store page (every package is signature-checked), and, while you look at the AI tool list in Settings, to look up the newest versions of those tools and, when you ask, the public list of AI providers.</li>
+          <li>Things you start yourself, such as importing from GitHub, talk to the server you point them at.</li>
         </ul>
 
-        <h2>5. Your rights</h2>
-        <ul>
-          <li><strong>View and manage</strong>: see your account, signed-in devices and storage usage in the app’s Settings; sign out any phone under Settings → Phone on your Mac.</li>
-          <li><strong>Stop syncing</strong>: turn off the matching sync switch on your Mac, or unlink the Mac; its copies on the server are deleted as well.</li>
-          <li><strong>Delete your account</strong>: “Delete account” at the bottom of the app’s Settings; once you confirm it is you, all data is deleted immediately.</li>
-          <li><strong>Turn off notifications</strong>: in the app’s Settings or in your system settings.</li>
-        </ul>
+        <h2>3. AI</h2>
+        <p>OpenBeast does not sell AI and does not sit between you and it. The AI tools you install sign in with your own accounts, and your requests go from your Mac straight to their providers, never through an OpenBeast server. Each provider’s own privacy policy applies to what you send it.</p>
 
-        <h2>6. Minors</h2>
-        <p>Minors under the age of 14 should use Remote only with the consent and guidance of a parent or guardian.</p>
+        <h2>4. Optional phone features</h2>
+        <p>Linking a phone (Settings → Phone) is optional. If you do, your Mac syncs the content you choose (to-dos, docs, chats and their attachments, and the app pages you open on the phone) with the relay service you sign up for, which stores it so your phone can reach it. That service has its own privacy policy and terms, shown before you sign up.</p>
 
-        <h2>7. Policy updates and contacting us</h2>
-        <p>If this policy changes in an important way, we will point it out prominently in the app or on this page. If you have any question about this policy or your personal information, email support@openbeast.cn; we will reply within 15 working days.</p>
+        <h2>5. Changes and contact</h2>
+        <p>If this policy changes, the new version and its effective date appear on this page. If you have a question, ask us on GitHub.</p>
 
         <div class="contact">
-          <div><b>Questions about your personal information?</b><span>Email us; we reply within 15 working days</span></div>
-          <a class="btn btn-ghost" href="mailto:support@openbeast.cn"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1.75" y="3.25" width="12.5" height="9.5" rx="2"/><path d="m2.5 4.5 5.5 4 5.5-4"/></svg>support@openbeast.cn</a>
+          <div><b>Questions about privacy?</b><span>Ask us on GitHub</span></div>
+          <a class="btn btn-ghost" href="https://github.com/oktiger/openbeast-releases/issues"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>Ask on GitHub</a>
         </div>
       </article>
     </div>
@@ -107,7 +83,7 @@
       <div class="footer-links">
         <a href="/privacy">Privacy Policy</a>
         <a href="/terms">Terms of Use</a>
-        <span>© 2026 北京最焦科技有限公司</span>
+        <span>© 2026 OpenBeast</span>
       </div>
     </div>
   </footer>
