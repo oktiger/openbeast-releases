@@ -3,7 +3,7 @@
 Two things live here:
 
 - **The repository files are the official website** at <https://openbeast.app>, deployed by the Vercel project `tigerspace/openbeast-site` on every push to `main`. Static files only, no build step.
-  The pages (`index.html` in English, `zh.html` in Chinese, `privacy.html`, `terms.html`, `404.html`, `home.css`, `home.js`, `style.css`, `icon.png`, `site-version.json`) are generated from `remote/site` in [oktiger/openbeast](https://github.com/oktiger/openbeast), the same files as <https://openbeast.cn>, by `node remote/server/deploy/deploy-global-site.mjs` there. Change them in that repository and publish again; edits made here are overwritten. `vercel.json`, `README.md` and `logo.png` belong to this repository.
+  The pages are generated from the OpenBeast source by its global-site publish script (`remote/server/deploy/deploy-global-site.mjs`); change them there and publish again, since edits made here are overwritten. `vercel.json`, `README.md` and `logo.png` belong to this repository.
 - **The GitHub Releases hold the macOS installers** (DMG for first installs, ZIP plus `latest-mac.yml` for in-app updates), uploaded by OpenBeast's "Build DMG → publish" flow.
 
 ## Stable addresses (do not change)
